@@ -9,15 +9,22 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    
+    
+    @IBAction func useRedIcon(_ sender: Any) {
+        changeIcon(name: nil)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBAction func useGreenIcon(_ sender: Any) {
+        changeIcon(name: "Green")
+    }
+    
+    func changeIcon(name: String?) {
+        if UIApplication.shared.supportsAlternateIcons {
+            UIApplication.shared.setAlternateIconName(name, completionHandler: { (Error) in
+                print(Error?.localizedDescription ?? "No Error")
+            })
+        }
     }
 
 
